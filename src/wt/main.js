@@ -17,6 +17,7 @@ const performCalculations = async () => {
 
   if (isMainThread) {
     const results = [];
+    const numberOfWorkers = cpus().length;
 
     const isAllWorkersCompleted = () => results.filter(r => r).length === numberOfWorkers;
     const checkResults = () => {
@@ -40,7 +41,6 @@ const performCalculations = async () => {
       });
     }
 
-    const numberOfWorkers = cpus().length;
     const dataArr = [...Array(numberOfWorkers).keys()].map((i) => 10 + i);
 
     dataArr.forEach((value, index) => {
