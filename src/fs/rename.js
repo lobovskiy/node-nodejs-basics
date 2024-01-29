@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 
 const CONTENT_DIR_NAME = 'files';
 const OLD_FILE_NAME = 'wrongFilename.txt';
-const NEW_FILE_NAME = 'properFilename.txt';
+const NEW_FILE_NAME = 'properFilename.md';
 const ERROR_MESSAGE = 'FS operation failed';
 
 const rename = async () => {
