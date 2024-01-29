@@ -17,17 +17,8 @@ const copy = async () => {
     throw new Error(ERROR_MESSAGE);
   };
 
-  const sourceDirEntries = await fsPromises.readdir(sourceDirPath, { withFileTypes: true })
-    .catch(handleCopyError);
-  const sourceFiles = sourceDirEntries.filter(entry => entry.isFile());
-
   await fsPromises.mkdir(destDirPath).catch(handleCopyError);
-  for (const file of sourceFiles) {
-    const sourcePath = path.join(sourceDirPath, file.name);
-    const destPath = path.join(destDirPath, file.name);
-
-    await fsPromises.copyFile(sourcePath, destPath).catch(handleCopyError);
-  }
+  await fsPromises.cp(sourceDirPath, destDirPath, { recursive: true }).catch(handleCopyError);
 };
 
 await copy();
