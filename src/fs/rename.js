@@ -17,17 +17,8 @@ const rename = async () => {
   const handleError = () => {
     throw new Error(ERROR_MESSAGE);
   };
-  const isFileExists = async (filePath) => {
-    let result;
-
-    await fsPromises.access(filePath).then(() => {
-      result = true;
-    }).catch(() => {
-      result = false;
-    });
-
-    return result;
-  }
+  const isFileExists = async (filePath) =>
+    await fsPromises.access(filePath).then(() => true).catch(() => false);
 
   const isOldFileExists = await isFileExists(oldFilePath);
   const isNewFileExists = await isFileExists(newFilePath);
